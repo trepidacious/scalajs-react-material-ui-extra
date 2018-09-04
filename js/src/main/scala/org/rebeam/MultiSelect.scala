@@ -35,6 +35,7 @@ object MultiSelect {
     * @param nothingFound String to display in menu if no items are found for current input value
     * @param moreAvailable  String to display in menu after last displayed item, if more items 
     *                       match current input 
+    * @param placeholder  String to display in input box when empty
     */
   case class Props[A](
     items: List[A], 
@@ -44,7 +45,8 @@ object MultiSelect {
     itemToKey: (A, Int) => String = (_: A, i: Int) => i.toString,
     maxMenuItems: Int = 5,
     nothingFound: String = "Nothing found...",
-    moreAvailable: String = "More items match..."
+    moreAvailable: String = "More items match...",
+    placeholder: String = "Search..."
   )
 
   case class State(inputValue: String)
@@ -196,7 +198,7 @@ object MultiSelect {
             val inputProps = 
               a.getInputProps(
                 js.Dynamic.literal(
-                  "placeholder" -> "Search for a country",
+                  "placeholder" -> props.placeholder,
                   "startAdornment" -> chips,
 
                   // We need to pass this in here or downshift will override it
