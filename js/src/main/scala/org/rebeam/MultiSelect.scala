@@ -79,7 +79,7 @@ object MultiSelect {
               newItem => p.onSelectionChange(p.selectedItems :+ newItem)
             )
       
-      // Reopen the menu and select the first entr
+      // Reopen the menu and select the first entry
       _ <- Callback {
         c.openMenu()
         c.setHighlightedIndex(0)
